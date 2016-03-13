@@ -1,0 +1,22 @@
+#compiler
+	CC = g++
+
+#flags
+	CFLAGS = -g -Wall -pedantic
+
+default: Child
+
+Child: Array.o Child.o Log.o
+	$(CC) Array.o Child.o Log.o -o Child 
+
+Array.o: Array.h Array.cpp
+	$(CC) $(CFLAGS) -c Array.cpp
+
+Child.o: Child.cpp
+	$(CC) $(CFLAGS) -c Child.cpp
+
+Log.o: Log.h Log.cpp
+	$(CC) $(CFLAG) -c Log.cpp
+
+clean:
+	rm Child *.o
