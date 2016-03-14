@@ -1,26 +1,13 @@
 #include "Array.h"
 #ifdef _MSC_VER
 #include <Windows.h>
-#include <process.h>
 #else
 #include <getopt.h>
-#include <stdio_ext.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <signal.h>
 #endif
 
-#ifdef _MSC_VER
-#define FLUSH fflush(stdin)
-#else
-#define FLUSH __fpurge(stdin)
-#endif
-
-#ifdef _MSC_VER
-HANDLE increment, decrement,thread_inc, thread_dec;
-void Increment(void* pParams);
-void Decrement(void* pParams);
-#endif
 void WorkArray(int**, int, int);
 void GetSize(int&, int&, int, char**);
 
@@ -39,7 +26,6 @@ int main(int argc, char* argv[])
 		printf("\t\tAfter sorting\n");
 		PrintArray(my_array, amount, length);
 		printf("q to exit:\n");
-		FLUSH;
 	} while (getchar() != 'q');
 	FreeMemory(my_array, amount);
 	return 0;
@@ -48,10 +34,6 @@ int main(int argc, char* argv[])
 #ifdef _MSC_VER
 void GetSize(int& amount, int& length, int argc, char** argv)
 {
-	increment = CreateEvent(NULL, TRUE, FALSE, (LPCWSTR)"Increment");
-	decrement = CreateEvent(NULL, TRUE, FALSE, (LPCWSTR)"Decrement");
-	_beginthread(Increment, 0, NULL);
-	_beginthread(Decrement, 0, NULL);
 	if (argc < 3)
 	{
 		LOG_ERROR("Few arguments");
@@ -59,24 +41,6 @@ void GetSize(int& amount, int& length, int argc, char** argv)
 	}
 	amount = atoi(argv[1]);
 	length = atoi(argv[2]);
-}
-
-void Increment(void* pParams)
-{
-	while (TRUE)
-	{
-		WaitForSingleObject(increment, INFINITE);
-		LevelUp(0);
-	}
-}
-
-void Decrement(void* pParams)
-{
-	while (TRUE)
-	{
-		WaitForSingleObject(decrement, INFINITE);
-		LevelDown(0);
-	}
 }
 #else
 void GetSize(int& amount, int& length, int argc, char** argv)
