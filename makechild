@@ -2,7 +2,7 @@
 	CC = g++
 
 #flags
-	CFLAGS = -g -Wall -pedantic
+	CFLAGS = -g
 
 default: Child
 
