@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <termios.h>
 
-#include "fibonacci.hpp"
+#include "Fibonacci.hpp"
 
 const int MAX_THREAD = 20;
 

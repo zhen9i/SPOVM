@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "fibonacci.hpp"
+#include "Fibonacci.hpp"
 
 namespace spo {
 
