@@ -11,7 +11,7 @@
 
 const int MAX_THREAD = 20;
 
-int getch();
+int Getch();
 void Preview();
 void Start();
 
@@ -32,7 +32,7 @@ void Start() {
     std::vector<std::unique_ptr<spo::Fibonacci>> object;
     Preview();
     while(work) {
-        switch(char s = getch()) {
+        switch(char s = Getch()) {
         case '+' :
         {
             if(object.size() > MAX_THREAD) {
@@ -67,7 +67,7 @@ void Start() {
     object.clear();
 }
 
-int getch() {
+int Getch() {
     struct termios oldt, newt;
     int ch;
     tcgetattr( STDIN_FILENO, &oldt );
