@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Log.h"
-
+//да, могу
 int** AllocatingMemory(int, int);
 int* AllocatingMemory(int);
 int GenerateArray(int**,int,int);
